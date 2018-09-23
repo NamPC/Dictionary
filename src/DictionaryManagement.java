@@ -1,8 +1,9 @@
 import java.util.*;
+import java.io.*;
 
-public class DictionaryManagement extends Dictionary {
+public class DictionaryManagement extends Dictionary  {
 
-    public void  insertFromCommandline() {
+    protected void  insertFromCommandline() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter number of words: ");
         int n = sc.nextInt();
@@ -17,6 +18,9 @@ public class DictionaryManagement extends Dictionary {
             Word newWord = new Word(word, meaning);
             _dictionary.add(newWord);
         }
-        System.out.println("Successfull");
     }
+
+//    protected void insertFromFile() {
+//        //Viet vao day
+//    }
 }

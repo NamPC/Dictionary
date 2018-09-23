@@ -1,8 +1,16 @@
+import java.util.*;
+
 public class Word {
+
     private String _word_target; //new word
     private String _word_explain; //definition
 
     //Constructor
+    Word() {
+        this._word_target = "default";
+        this._word_explain = "default";
+    }
+
     Word(String word_target, String word_explain) {
         this._word_target = word_target;
         this._word_explain = word_explain;
@@ -17,9 +25,7 @@ public class Word {
     }
 
     //Getter
-    public String get_word_target() {
-        return this._word_target;
-    }
+    public String get_word_target() { return this._word_target; }
     public String get_word_explain() {
         return this._word_explain;
     }
