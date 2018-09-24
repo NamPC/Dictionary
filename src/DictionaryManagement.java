@@ -1,9 +1,9 @@
 import java.util.*;
 import java.io.*;
 
-public class DictionaryManagement extends Dictionary  {
+public class DictionaryManagement   {
 
-    protected void  insertFromCommandline() {
+    public void  insertFromCommandline() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter number of words: ");
         int n = sc.nextInt();
@@ -16,10 +16,16 @@ public class DictionaryManagement extends Dictionary  {
             String meaning = sc.nextLine();
             //sc.nextLine();
             Word newWord = new Word(word, meaning);
-            _dictionary.add(newWord);
+            Dictionary._dictionary.add(newWord);
         }
     }
 
+//    protected void dictionaryLookup() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Enter the word: ");
+//        String find = sc.nextLine();
+//
+//    }
 //    protected void insertFromFile() {
 //        //Viet vao day
 //    }
