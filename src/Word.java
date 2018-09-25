@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class Word {
 
     private String _word_target; //new word

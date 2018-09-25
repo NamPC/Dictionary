@@ -1,6 +1,4 @@
-import java.util.*;
-
-public class DictionaryCommandline {
+public class DictionaryCommandline  {
 
     private void showAllWords() {
         for (int i = 0; i < Dictionary._dictionary.size(); i++) {
@@ -17,8 +15,11 @@ public class DictionaryCommandline {
 
     public void dictionaryAdvanced() {
         DictionaryManagement dictionaryManagement = new DictionaryManagement();
-        dictionaryManagement.insertFromFile();
         DictionaryCommandline dictionaryCommandline = new DictionaryCommandline();
+        dictionaryManagement.insertFromFile();
+        dictionaryCommandline.showAllWords();
+        dictionaryManagement.dictionaryModify();
+        dictionaryManagement.dictionaryDelete();
         dictionaryCommandline.showAllWords();
     }
 }
