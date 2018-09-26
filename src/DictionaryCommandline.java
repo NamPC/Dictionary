@@ -1,7 +1,6 @@
 import java.util.*;
 public class DictionaryCommandline  {
-    public boolean closeApp = false;
-
+    private boolean closeApp = false;
 
     private void showAllWords() {
         for (int i = 0; i < Dictionary._dictionary.size(); i++) {
@@ -10,10 +9,11 @@ public class DictionaryCommandline  {
     }
 
     public void dictionaryBasic() {
+        DictionaryCommandline dictionaryCommandline = new DictionaryCommandline();
         DictionaryManagement dictionaryManagement = new DictionaryManagement();
         dictionaryManagement.insertFromCommandline();
-        DictionaryCommandline dictionaryCommandline = new DictionaryCommandline();
         dictionaryCommandline.showAllWords();
+        dictionaryManagement.dictionaryExportToFile();
     }
 
     public void dictionaryAdvanced() {
