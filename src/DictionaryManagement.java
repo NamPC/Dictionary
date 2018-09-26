@@ -37,7 +37,7 @@ public class DictionaryManagement {
     protected void insertFromFile() {
         Scanner scanner = null;
         try {
-            scanner = new Scanner(new File("D:\\Github\\Dictionary\\src\\library.txt")); // Sua lai duong link theo may m
+            scanner = new Scanner(new File("src\\library.txt")); // Sua lai duong link theo may m
 
         } catch (FileNotFoundException e) {
 

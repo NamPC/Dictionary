@@ -18,9 +18,7 @@ public class Word {
     public void setWord_target(String word_target) {
         this._word_target = word_target;
     }
-    public void setWord_explain(String word_explain) {
-        this._word_explain = word_explain;
-    }
+    public void setWord_explain(String word_explain) { this._word_explain = word_explain; }
 
     //Getter
     public String get_word_target() { return this._word_target; }
