@@ -26,3 +26,4 @@ public class Word {
         return this._word_explain;
     }
 }
+//
