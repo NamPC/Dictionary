@@ -2,7 +2,6 @@ import java.util.*;
 import java.io.*;
 
 public class DictionaryManagement {
-
     protected void insertFromCommandline() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter number of words: ");
@@ -18,29 +17,13 @@ public class DictionaryManagement {
         }
     }
 
-    protected int dictionaryLookup() { //Ver 1
-        boolean notFound = true;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the word you want to find: ");
-        String find = sc.nextLine();
-        for (int i = 0; i < Dictionary._dictionary.size(); i++) {
-            if (find.toLowerCase().equals(Dictionary._dictionary.get(i).get_word_target().toLowerCase())) {
-                System.out.println("Meaning: " + Dictionary._dictionary.get(i).get_word_explain());
-                notFound = false;
-                return i;
-            }
-        }
-        if (notFound) System.out.println("Not Found");
-        return -1;
-    }
-
     protected void insertFromFile() {
         Scanner scanner = null;
-        try {
-            scanner = new Scanner(new File("src\\library.txt")); // Sua lai duong link theo may m
+        String filename_path = "src\\library.txt";
+        try{
+            scanner = new Scanner(new File(filename_path));
 
-        } catch (FileNotFoundException e) {
-
+        }catch (FileNotFoundException e) {
             scanner = new Scanner(System.in);
             System.out.println("File not found");
         }
@@ -53,12 +36,69 @@ public class DictionaryManagement {
         }
     }
 
+    protected void dictionaryExportToFile(){
+        String path = "src\\library.txt";
+        for (int i=0;i<Dictionary._dictionary.size();i++) {
+            try (FileWriter fw = new FileWriter(path, true);
+                 BufferedWriter bf = new BufferedWriter(fw);
+                 PrintWriter pw = new PrintWriter(bf)) {
+                pw.println(Dictionary._dictionary.get(i).get_word_target() + " " + Dictionary._dictionary.get(i).get_word_explain());
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+    /////////////////////////////////////////////Features///////////////////////////////////////////////////
+
+    //////////////////////////////////Search for words //////////////////////////////////////////////////////
+    protected void dictionarySearcher(){
+        boolean notFound = true;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the word you want to find: ");
+        String input = sc.nextLine();
+        String find = input.toLowerCase();
+
+        for (int i = 0; i < Dictionary._dictionary.size(); i++) {
+            String word = Dictionary._dictionary.get(i).get_word_target().toLowerCase();
+            if (word.contains(find)) {
+                System.out.print("Found this word: " + Dictionary._dictionary.get(i).get_word_target() + " ");
+                System.out.println("Meaning: " + Dictionary._dictionary.get(i).get_word_explain());
+                notFound = false;
+            }
+        }
+        if (notFound)
+            System.out.println("Not Found");
+    }
+
+    //////////////////////////////////Search for words for modifying and deleting (return the index)/////////
+    private int findWord(){
+        boolean notFound = true;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the word you want to find: ");
+        String input = sc.nextLine();
+        String find = input.toLowerCase();
+
+        for (int i = 0; i < Dictionary._dictionary.size(); i++) {
+            String word = Dictionary._dictionary.get(i).get_word_target().toLowerCase();
+            if (word.contains(find)) {
+                notFound = false;
+                return i;
+            }
+        }
+        if (notFound)
+            System.out.println("Not Found");
+        return -1;
+    }
+
+    ////////////////////////Modify word/////////////////////////////////////////////////////////////////////
     protected void dictionaryModify() {
         DictionaryManagement dictionaryManagement = new DictionaryManagement();
-        int index = dictionaryManagement.dictionaryLookup();
+        int index = dictionaryManagement.findWord();
+
         if (index != -1) {
             System.out.println("Choose your option: ");
-            System.out.printf("1) Modify the word \n2) Modify the meaning \n3) Modify both the word and it's meaning \n");
+            System.out.printf("1) Modify the word \n2) Modify the meaning \n3) Modify both its word and meaning \n");
             Scanner sc = new Scanner(System.in);
             int choose = sc.nextInt();
             sc.nextLine();
@@ -85,9 +125,10 @@ public class DictionaryManagement {
         }
     }
 
+    //////////////////////Delete word//////////////////////////////////////////
     protected void dictionaryDelete() {
         DictionaryManagement dictionaryManagement = new DictionaryManagement();
-        int index = dictionaryManagement.dictionaryLookup();
+        int index = dictionaryManagement.findWord();
         if (index != -1) {
             Dictionary._dictionary.remove(index);
             System.out.println("Gone!");
