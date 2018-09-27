@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class DictionaryManagement {
+
     protected void insertFromCommandline() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter number of words: ");
